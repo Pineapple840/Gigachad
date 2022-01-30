@@ -5,29 +5,21 @@ import os
 
 import discord
 from dotenv import load_dotenv
+from discord.ext import commands
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 
-client = discord.Client()
+bot = commands.Bot(command_prefix='^')
+
 GUILD = os.getenv('DISCORD_GUILD')
-@client.event
+@bot.event
 async def on_ready():
-    for guild in client.guilds:
-        if guild.name == GUILD:
-            break
-
-    print(
-        f'{client.user} is connected to the following guild:\n'
-        f'{guild.name}(id: {guild.id})'
-    )
-@client.event
-async def on_message(message):
-    if message.author == client.user:
-        return
-
-    if message.content == '^ip':
-        random.seed(client.user.id)
+    print(f'{bot.user.name} is connected to Discord')
+@bot.command(name='ip')
+async def ip(ctx,a : discord.Member):
+        random.seed(ctx.message.author.id)
         response = f'{random.randrange(0,255)}.{random.randrange(0,255)}.{random.randrange(0,255)}.{random.randrange(0,255)}'
-        await message.channel.send(response)
-client.run(TOKEN)
+        await ctx.send(response + a.id)
+
+bot.run(TOKEN)
