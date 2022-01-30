@@ -17,9 +17,12 @@ GUILD = os.getenv('DISCORD_GUILD')
 async def on_ready():
     print(f'{bot.user.name} is connected to Discord')
 @bot.command(name='ip')
-async def ip(ctx,a : discord.Member):
-        random.seed(ctx.message.author.id)
-        response = f'{random.randrange(0,255)}.{random.randrange(0,255)}.{random.randrange(0,255)}.{random.randrange(0,255)}'
-        await ctx.send(response + a.id)
+async def ip(ctx,member : discord.Member = None):
+    if member is None:
+        member = ctx.message.author
+
+    random.seed(member.id)
+    response = f'{random.randrange(0,255)}.{random.randrange(0,255)}.{random.randrange(0,255)}.{random.randrange(0,255)}'
+    await ctx.send(response)
 
 bot.run(TOKEN)
