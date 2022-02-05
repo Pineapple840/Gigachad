@@ -36,8 +36,7 @@ async def help(ctx):
 
 @bot.command()
 async def sendmessage(ctx,channel:discord.TextChannel, *text):
-    if ctx.message.author.id == "717732515292643338":
-        await channel.send(text)
+    await channel.send(' '.join(text))
 
 
 
