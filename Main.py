@@ -38,6 +38,22 @@ async def help(ctx):
 async def sendmessage(ctx,channel:discord.TextChannel, *text):
     await channel.send(' '.join(text))
 
+@bot.event
+async def on_message(message):
+    channel = bot.get_channel('458778457539870742')
+    if message.server is None and message.author != bot.user:
+        await bot.send_message(channel, message.content)
+    await bot.process_commands(message)
+
+# This always sends the same message to the same person.  Is that what you want?
+@bot.command(pass_context=True)
+@commands.is_owner()  # The account that owns the bot
+async def dm(ctx):
+    memberID = "ID OF RECIPIENT"
+    person = await bot.get_user_info(memberID)
+    await bot.send_message(person, "WHAT I'D LIKE TO SAY TO THEM")
+    await bot.delete_message(ctx.message)
+
 
 
 bot.run(TOKEN)
