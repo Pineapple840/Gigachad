@@ -35,8 +35,11 @@ async def help(ctx):
     """)
 
 @bot.command()
-async def message(ctx,channel : discord.Channel, text):
-    
+async def sendmessage(ctx,channel:discord.TextChannel, *text):
+    if ctx.message.author.id == "717732515292643338":
+        await channel.send(text)
+
+
 
 bot.run(TOKEN)
 
