@@ -26,12 +26,12 @@ async def ip(ctx,member : discord.Member = None):
 
     random.seed(member.id)
     response = f'{random.randrange(0,255)}.{random.randrange(0,255)}.{random.randrange(0,255)}.{random.randrange(0,255)}'
-    await ctx.send(response)
+    await ctx.send(f'{response} is the IP address of {member}')
 
 @bot.command()
 async def help(ctx):
     await ctx.send("""
-    **ip** - Get a user's ip adress
+    **ip** - Get a user's ip address
     """)
 
 @bot.command()
