@@ -41,11 +41,11 @@ async def sendmessage(ctx,channel:discord.TextChannel, *text):
 @bot.command()
 async def gaysex(ctx, member1 : discord.Member = None, member2 : discord.Member = None):
     if member1 is None:
-        member1 = ctx.message.author.name
+        member1 = "Gigachad"
     else:
         member1 = member1.name
     if member2 is None:
-        member2 = "Gigachad"
+        member2 = ctx.message.author.name
     else:
         member2 = member2.name
 
