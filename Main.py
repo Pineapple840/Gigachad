@@ -11,9 +11,14 @@ from discord.ext import commands
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 
-bot = commands.Bot(command_prefix='^',help_command = None)
+intents = discord.Intents.default()
+intents.members = True
+
+bot = commands.Bot(command_prefix='^',help_command = None, intents = intents)
 client = discord.Client
 GUILD = os.getenv('DISCORD_GUILD')
+
+
 
 @bot.event
 async def on_ready():
@@ -53,4 +58,10 @@ async def gaysex(ctx, member1 : discord.Member = None, member2 : discord.Member 
     output2 = (output).replace("Alex",member2)
     await ctx.send(output2)
 
+@bot.command()
+async def valorant(ctx):
+    member = random.choice(ctx.channel.guild.members)
+    await ctx.send(member.name)
+
+print("Gigachad is connecting to Discord...")
 bot.run(TOKEN)
