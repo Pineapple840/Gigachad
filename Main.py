@@ -23,6 +23,25 @@ GUILD = os.getenv('DISCORD_GUILD')
 @bot.event
 async def on_ready():
     print(f'{bot.user.name} is connected to Discord')
+    #channel = bot.get_channel(939611555815891006)
+    #await channel.send('hi')
+
+
+@bot.event
+async def on_message(message):
+    if 'uwu' in message.content or 'owo' in message.content:
+        await message.channel.send('https://tenor.com/view/stop-it-get-some-help-gif-15058124')
+    await bot.process_commands(message)
+
+@bot.command()
+async def russianroulette(ctx):
+    random.seed()
+    russianroulettechance = random.randrange(1,6)
+    finnscheatcode = ctx.message.author.id
+    if finnscheatcode == 717732515292643338 or russianroulettechance != 3:
+        await ctx.send("You survive :grin:")
+    else:
+        await ctx.send("You die :skull:")
 
 @bot.command()
 async def ip(ctx,member : discord.Member = None):
