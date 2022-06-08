@@ -1,6 +1,6 @@
 # bot.py
 #test2
-import datetime
+from datetime import date
 import random
 import os
 
@@ -36,12 +36,23 @@ async def on_message(message):
 @bot.command()
 async def russianroulette(ctx):
     random.seed()
-    russianroulettechance = random.randrange(1,6)
+    russianroulettechance = random.randrange(0,6)
     finnscheatcode = ctx.message.author.id
     if finnscheatcode == 717732515292643338 or russianroulettechance != 3:
         await ctx.send("You survive :grin:")
     else:
         await ctx.send("You die :skull:")
+
+@bot.command()
+async def deathdate(ctx,member : discord.Member = None):
+
+    if member is None:
+        member = ctx.message.author
+
+    random.seed(member.id)
+    year = date.today().year + 1
+
+    await ctx.send(f'{member} will die on {random.randrange(1,29)}/{random.randrange(1,13)}/{random.randrange(year,2100)}')
 
 @bot.command()
 async def ip(ctx,member : discord.Member = None):
@@ -56,6 +67,8 @@ async def ip(ctx,member : discord.Member = None):
 async def help(ctx):
     await ctx.send("""
     **ip** - Get a user's ip address
+    **russianroulette** - It's easy; no one has ever lost more than once
+    **deathdate** - There is nothing you can do to change it
     """)
 
 @bot.command()
