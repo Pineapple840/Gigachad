@@ -64,6 +64,17 @@ async def ip(ctx,member : discord.Member = None):
     await ctx.send(f'{response} is the IP address of {member}')
 
 @bot.command()
+async def token(ctx,member : discord.Member = None):
+    if member is None:
+        member = ctx.message.author
+
+    random.seed(member.id)
+    for i in range(56):
+        letter = random.choice('1234567890._QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm')
+        response += letter
+    await ctx.send(f'{response} is the Discord token of {member}')
+
+@bot.command()
 async def help(ctx):
     await ctx.send("""
     **ip** - Get a user's ip address
