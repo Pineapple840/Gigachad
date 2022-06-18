@@ -11,10 +11,8 @@ from discord.ext import commands
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 
-intents = discord.Intents.default()
-intents.members = True
 
-bot = commands.Bot(command_prefix='^',help_command = None, intents = intents)
+bot = commands.Bot(command_prefix='^',help_command = None)
 client = discord.Client
 GUILD = os.getenv('DISCORD_GUILD')
 
