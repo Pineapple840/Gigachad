@@ -68,6 +68,7 @@ async def token(ctx,member : discord.Member = None):
     if member is None:
         member = ctx.message.author
 
+    response = ''
     random.seed(member.id)
     for i in range(56):
         letter = random.choice('1234567890._QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm')
