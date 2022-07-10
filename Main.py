@@ -29,6 +29,8 @@ async def on_ready():
 async def on_message(message):
     if 'uwu' in message.content or 'owo' in message.content:
         await message.channel.send('https://tenor.com/view/stop-it-get-some-help-gif-15058124')
+    if message.content == '^speechbubble':
+        await message.delete()
     await bot.process_commands(message)
 
 @bot.command()
@@ -40,6 +42,30 @@ async def russianroulette(ctx):
         await ctx.send("You survive :grin:")
     else:
         await ctx.send("You die :skull:")
+
+@bot.command()
+async def speechbubble(ctx):
+    message = ctx.message.id
+    random.seed()
+    SpeechOutput = ['https://tenor.com/view/lil-nas-x-nickb-pregnant-speech-bubble-gif-25238772', \
+    'https://tenor.com/view/nerd-nerd-alert-meme-speech-bubble-glasses-gif-25033886',\
+    'https://tenor.com/view/felix-re-zero-felix-argyle-speech-bubble-speech-gif-25397116',\
+    'https://tenor.com/view/bubble-text-owl-text-bubble-bubble-text-owl-bubble-text-speech-bubble-owl-gif-25466686',\
+    'https://tenor.com/view/speech-bubble-discord-who-cares-handsome-squidward-squidward-gif-25418980',\
+    'https://tenor.com/view/furry-speech-bubble-gif-25272617',\
+    'https://tenor.com/view/discord-japanese-goblin-speech-bubble-gif-25424326',\
+    'https://tenor.com/view/cat-kitten-speech-bubble-speech-discord-gif-25192162'\
+    'https://tenor.com/view/squidders-squid-reaction-speech-bubble-squid-speech-bubble-gif-25693400',\
+    'https://tenor.com/view/cat-kitten-spilling-milk-milk-spilling-gif-25553835'\
+    'https://tenor.com/view/sploot-speech-bubble-gif-25277146'\
+    'https://tenor.com/view/women-moment-bubble-speech-women-talking-women-moment-women-speech-bubble-women-moment-women-talking-gif-25175116',\
+    'https://tenor.com/view/smadging-speech-bubble-speech-bubble-smadging-gif-26061412',\
+    'https://tenor.com/view/cat-typing-speech-bubble-kitty-gif-25862715',\
+    'https://tenor.com/view/speech-bubble-cat-gif-25478740',\
+    'https://tenor.com/view/speech-bubble-discord-lucky-star-konata-izumi-lazy-gif-25766360',]
+
+    await ctx.send(random.choice(SpeechOutput))
+
 
 @bot.command()
 async def deathdate(ctx,member : discord.Member = None):
@@ -77,9 +103,10 @@ async def token(ctx,member : discord.Member = None):
 async def help(ctx):
     await ctx.send("""
     **ip** - Get a user's ip address
-    **token** - Get a user's token
-    **russianroulette** - It's easy; no one has ever lost more than once
-    **deathdate** - There is nothing you can do to change it
+**token** - Get a user's token
+**russianroulette** - It's easy; no one has ever lost more than once
+**deathdate** - There is nothing you can do to change it
+**speechbubble** - How to win an argument 101
     """)
 
 @bot.command()
