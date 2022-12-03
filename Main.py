@@ -1,29 +1,33 @@
-# bot.py
-#test2
 from datetime import date
 import random
 import os
 
 import discord
 from dotenv import load_dotenv
+from discord import app_commands
 from discord.ext import commands
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 
-
-bot = commands.Bot(command_prefix='^',help_command = None)
-client = discord.Client
+intents=discord.Intents.all()
+client = discord.Client(intents = intents)
+bot = commands.Bot(command_prefix='^',help_command = None, intents = intents)
 GUILD = os.getenv('DISCORD_GUILD')
+tree = app_commands.CommandTree(client)
 
 
 
 @bot.event
 async def on_ready():
+    await tree.sync()
     print(f'{bot.user.name} is connected to Discord')
     #channel = bot.get_channel(939611555815891006)
     #await channel.send('hi')
 
+@tree.command(name = "commandname", description = "My first application Command")
+async def first_command(interaction):
+    await interaction.response.send_message("Hello!")
 
 @bot.event
 async def on_message(message):
