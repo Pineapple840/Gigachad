@@ -47,9 +47,9 @@ async def russianroulette(ctx):
     else:
         await ctx.send("You die :skull:")
 
-@bot.command()
-async def speechbubble(ctx):
-    message = ctx.message.id
+@tree.command(name = 'speechbubble',description = "Incorrect opinion ^", guild=discord.Object(id=GUILD))
+async def speechbubble(interaction: discord.Interaction):
+    message = interaction.id
     random.seed()
     SpeechOutput = ['https://tenor.com/view/lil-nas-x-nickb-pregnant-speech-bubble-gif-25238772', \
     'https://tenor.com/view/nerd-nerd-alert-meme-speech-bubble-glasses-gif-25033886',\
@@ -68,7 +68,7 @@ async def speechbubble(ctx):
     'https://tenor.com/view/speech-bubble-cat-gif-25478740',\
     'https://tenor.com/view/speech-bubble-discord-lucky-star-konata-izumi-lazy-gif-25766360',]
 
-    await ctx.send(random.choice(SpeechOutput))
+    await interaction.response.send_message(random.choice(SpeechOutput))
 
 
 @bot.command()
@@ -92,7 +92,7 @@ async def ip(interaction: discord.Interaction, member : discord.Member = None):
     await interaction.response.send_message(f'{response} is the IP address of {member}')
 
 @tree.command(name = 'token',description = "Finds the token of a user", guild=discord.Object(id=GUILD))
-async def token(interaction: discord.Interaction,member : discord.Member = None):
+async def token(interaction: discord.Interaction, member : discord.Member = None):
     if member is None:
         member = interaction.user
 
