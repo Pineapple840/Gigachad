@@ -103,15 +103,7 @@ async def token(ctx,member : discord.Member = None):
         response += letter
     await ctx.send(f'{response} is the Discord token of {member}')
 
-@bot.command()
-async def help(ctx):
-    await ctx.send("""
-    **ip** - Get a user's ip address
-**token** - Get a user's token
-**russianroulette** - It's easy; no one has ever lost more than once
-**deathdate** - There is nothing you can do to change it
-**speechbubble** - How to win an argument 101
-    """)
+
 
 
 @bot.command()
