@@ -82,7 +82,7 @@ async def deathdate(ctx,member : discord.Member = None):
 
     await ctx.send(f'{member} will die on {random.randrange(1,29)}/{random.randrange(1,13)}/{random.randrange(year,2100)}')
 
-@tree.command(name = 'ip',description = "My first application Command", guild=discord.Object(id=GUILD))
+@tree.command(name = 'ip',description = "Finds the IP address of a user", guild=discord.Object(id=GUILD))
 async def ip(interaction: discord.Interaction, member : discord.Member = None):
     if member is None:
         member = interaction.user
@@ -91,17 +91,17 @@ async def ip(interaction: discord.Interaction, member : discord.Member = None):
     response = f'{random.randrange(0,255)}.{random.randrange(0,255)}.{random.randrange(0,255)}.{random.randrange(0,255)}'
     await interaction.response.send_message(f'{response} is the IP address of {member}')
 
-@bot.command()
-async def token(ctx,member : discord.Member = None):
+@tree.command(name = 'token',description = "Finds the token of a user", guild=discord.Object(id=GUILD))
+async def token(interaction: discord.Interaction,member : discord.Member = None):
     if member is None:
-        member = ctx.message.author
+        member = interaction.user
 
     response = ''
     random.seed(member.id)
     for i in range(56):
         letter = random.choice('1234567890._QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm')
         response += letter
-    await ctx.send(f'{response} is the Discord token of {member}')
+    await interaction.response.send_message(f'{response} is the Discord token of {member}')
 
 
 print("Gigachad is connecting to Discord...")
