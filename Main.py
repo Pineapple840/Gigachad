@@ -70,16 +70,16 @@ async def speechbubble(interaction: discord.Interaction):
     await interaction.response.send_message(random.choice(SpeechOutput))
 
 
-@bot.command()
-async def deathdate(ctx,member : discord.Member = None):
+@tree.command(name = 'deathdate',description = "Find our when you will die", guild=discord.Object(id=GUILD))
+async def deathdate(interaction = discord.Interaction,member : discord.Member = None):
 
     if member is None:
-        member = ctx.message.author
+        member = interaction.user
 
     random.seed(member.id)
     year = date.today().year + 1
 
-    await ctx.send(f'{member} will die on {random.randrange(1,29)}/{random.randrange(1,13)}/{random.randrange(year,2100)}')
+    await interaction.response.send_message(f'{member} will die on {random.randrange(1,29)}/{random.randrange(1,13)}/{random.randrange(year,2130)}')
 
 @tree.command(name = 'ip',description = "Finds the IP address of a user", guild=discord.Object(id=GUILD))
 async def ip(interaction: discord.Interaction, member : discord.Member = None):
