@@ -104,12 +104,5 @@ async def token(ctx,member : discord.Member = None):
     await ctx.send(f'{response} is the Discord token of {member}')
 
 
-
-
-@bot.command()
-async def valorant(ctx):
-    member = random.choice(ctx.channel.guild.members)
-    await ctx.send(member.name)
-
 print("Gigachad is connecting to Discord...")
 client.run(TOKEN)
