@@ -37,15 +37,14 @@ async def on_message(message):
         await message.delete()
     await bot.process_commands(message)
 
-@bot.command()
-async def russianroulette(ctx):
+@tree.command(name = 'russianroulette',description = "Nobody has ever lost more than once", guild=discord.Object(id=GUILD))
+async def russianroulette(interaction = discord.Interaction):
     random.seed()
     russianroulettechance = random.randrange(0,6)
-    finnscheatcode = ctx.message.author.id
-    if finnscheatcode == 717732515292643338 or russianroulettechance != 3:
-        await ctx.send("You survive :grin:")
+    if russianroulettechance != 3:
+        await interaction.response.send_message("You survive :grin:")
     else:
-        await ctx.send("You die :skull:")
+        await interaction.response.send_message("You die :skull:")
 
 @tree.command(name = 'speechbubble',description = "Incorrect opinion ^", guild=discord.Object(id=GUILD))
 async def speechbubble(interaction: discord.Interaction):
