@@ -9,27 +9,27 @@ from discord.ext import commands
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
+GUILD = int(os.getenv('DISCORD_GUILD'))
 
 intents=discord.Intents.all()
 client = discord.Client(intents = intents)
 bot = commands.Bot(command_prefix='^',help_command = None, intents = intents)
-GUILD = os.getenv('DISCORD_GUILD')
 tree = app_commands.CommandTree(client)
 
 
 
 @client.event
 async def on_ready():
-    await tree.sync(guild=discord.Object(id=924017431175913472))
+    await tree.sync(guild=discord.Object(id=GUILD))
     print('Gigachad is connected to Discord')
     #channel = bot.get_channel(939611555815891006)
     #await channel.send('hi')
 
-@tree.command(name = "commandname", description = "My first application Command", guild=discord.Object(id=924017431175913472))
+@tree.command(name = "commandname", description = "My first application Command", guild=discord.Object(id=GUILD))
 async def first_command(interaction):
     await interaction.response.send_message("Hello!")
 
-@bot.event
+@client.event
 async def on_message(message):
     if 'uwu' in message.content or 'owo' in message.content:
         await message.channel.send('https://tenor.com/view/stop-it-get-some-help-gif-15058124')
@@ -82,14 +82,14 @@ async def deathdate(ctx,member : discord.Member = None):
 
     await ctx.send(f'{member} will die on {random.randrange(1,29)}/{random.randrange(1,13)}/{random.randrange(year,2100)}')
 
-@bot.command()
-async def ip(ctx,member : discord.Member = None):
+@tree.command(name = 'ip',description = "My first application Command", guild=discord.Object(id=GUILD))
+async def ip(interaction: discord.Interaction, member : discord.Member = None):
     if member is None:
-        member = ctx.message.author
+        member = interaction.user
 
     random.seed(member.id)
     response = f'{random.randrange(0,255)}.{random.randrange(0,255)}.{random.randrange(0,255)}.{random.randrange(0,255)}'
-    await ctx.send(f'{response} is the IP address of {member}')
+    await interaction.response.send_message(f'{response} is the IP address of {member}')
 
 @bot.command()
 async def token(ctx,member : discord.Member = None):
