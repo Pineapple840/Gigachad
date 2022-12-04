@@ -20,12 +20,12 @@ tree = app_commands.CommandTree(client)
 
 @client.event
 async def on_ready():
-    await tree.sync(guild=discord.Object(id=GUILD))
+    await tree.sync()
     print('Gigachad is connected to Discord')
     #channel = bot.get_channel(939611555815891006)
     #await channel.send('hi')
 
-@tree.command(name = "ping", description = "ping", guild=discord.Object(id=GUILD))
+@tree.command(name = "ping", description = "ping")
 async def first_command(interaction):
     await interaction.response.send_message("Pong!")
 
@@ -37,7 +37,7 @@ async def on_message(message):
         await message.delete()
     await bot.process_commands(message)
 
-@tree.command(name = 'russianroulette',description = "Nobody has ever lost more than once", guild=discord.Object(id=GUILD))
+@tree.command(name = 'russianroulette',description = "Nobody has ever lost more than once")
 async def russianroulette(interaction = discord.Interaction):
     random.seed()
     russianroulettechance = random.randrange(0,6)
@@ -46,7 +46,7 @@ async def russianroulette(interaction = discord.Interaction):
     else:
         await interaction.response.send_message("You die :skull:")
 
-@tree.command(name = 'speechbubble',description = "Incorrect opinion ^", guild=discord.Object(id=GUILD))
+@tree.command(name = 'speechbubble',description = "Incorrect opinion ^")
 async def speechbubble(interaction: discord.Interaction):
     message = interaction.id
     random.seed()
@@ -70,7 +70,7 @@ async def speechbubble(interaction: discord.Interaction):
     await interaction.response.send_message(random.choice(SpeechOutput))
 
 
-@tree.command(name = 'deathdate',description = "Find our when you will die", guild=discord.Object(id=GUILD))
+@tree.command(name = 'deathdate',description = "Find our when you will die")
 async def deathdate(interaction = discord.Interaction,member : discord.Member = None):
 
     if member is None:
@@ -81,7 +81,7 @@ async def deathdate(interaction = discord.Interaction,member : discord.Member = 
 
     await interaction.response.send_message(f'{member} will die on {random.randrange(1,29)}/{random.randrange(1,13)}/{random.randrange(year,2130)}')
 
-@tree.command(name = 'ip',description = "Finds the IP address of a user", guild=discord.Object(id=GUILD))
+@tree.command(name = 'ip',description = "Finds the IP address of a user")
 async def ip(interaction: discord.Interaction, member : discord.Member = None):
     if member is None:
         member = interaction.user
@@ -90,7 +90,7 @@ async def ip(interaction: discord.Interaction, member : discord.Member = None):
     response = f'{random.randrange(0,255)}.{random.randrange(0,255)}.{random.randrange(0,255)}.{random.randrange(0,255)}'
     await interaction.response.send_message(f'{response} is the IP address of {member}')
 
-@tree.command(name = 'token',description = "Finds the token of a user", guild=discord.Object(id=GUILD))
+@tree.command(name = 'token',description = "Finds the token of a user")
 async def token(interaction: discord.Interaction, member : discord.Member = None):
     if member is None:
         member = interaction.user
