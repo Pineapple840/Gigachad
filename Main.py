@@ -18,14 +18,14 @@ tree = app_commands.CommandTree(client)
 
 
 
-@bot.event
+@client.event
 async def on_ready():
-    await tree.sync()
-    print(f'{bot.user.name} is connected to Discord')
+    await tree.sync(guild=discord.Object(id=924017431175913472))
+    print('Gigachad is connected to Discord')
     #channel = bot.get_channel(939611555815891006)
     #await channel.send('hi')
 
-@tree.command(name = "commandname", description = "My first application Command")
+@tree.command(name = "commandname", description = "My first application Command", guild=discord.Object(id=924017431175913472))
 async def first_command(interaction):
     await interaction.response.send_message("Hello!")
 
@@ -138,4 +138,4 @@ async def valorant(ctx):
     await ctx.send(member.name)
 
 print("Gigachad is connecting to Discord...")
-bot.run(TOKEN)
+client.run(TOKEN)
