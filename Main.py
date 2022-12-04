@@ -25,9 +25,9 @@ async def on_ready():
     #channel = bot.get_channel(939611555815891006)
     #await channel.send('hi')
 
-@tree.command(name = "commandname", description = "My first application Command", guild=discord.Object(id=GUILD))
+@tree.command(name = "ping", description = "ping", guild=discord.Object(id=GUILD))
 async def first_command(interaction):
-    await interaction.response.send_message("Hello!")
+    await interaction.response.send_message("Pong!")
 
 @client.event
 async def on_message(message):
