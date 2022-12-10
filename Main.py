@@ -33,8 +33,6 @@ async def first_command(interaction):
 async def on_message(message):
     if 'uwu' in message.content or 'owo' in message.content:
         await message.channel.send('https://tenor.com/view/stop-it-get-some-help-gif-15058124')
-    if message.content == '^speechbubble':
-        await message.delete()
     await bot.process_commands(message)
 
 @tree.command(name = 'russianroulette',description = "Nobody has ever lost more than once")
