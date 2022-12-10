@@ -68,7 +68,7 @@ async def speechbubble(interaction: discord.Interaction):
     await interaction.response.send_message(random.choice(SpeechOutput))
 
 
-@tree.command(name = 'deathdate',description = "Find our when you will die")
+@tree.command(name = 'deathdate',description = "Find out when you will die")
 async def deathdate(interaction = discord.Interaction,member : discord.Member = None):
 
     if member is None:
